@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bài 6</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            .container {
+                max-width: 400px;
+                margin: auto;
+                text-align: center;
+            }
+            input[type="text"] {
+                width: 80%;
+                padding: 10px;
+                margin: 10px 0;
+                font-size: 16px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                background-color: #f4f4f4;
+                margin: 5px 0;
+                padding: 10px;
+                border: 1px solid #ddd;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .delete-button,
+            .edit-button,
+            .save-button,
+            .cancel-button {
+                background-color: #ff4d4d;
+                border: none;
+                color: white;
+                padding: 5px 10px;
+                cursor: pointer;
+                border-radius: 5px;
+                margin-left: 5px;
+            }
+            .edit-button {
+                background-color: #4caf50;
+            }
+            .save-button {
+                background-color: #008cba;
+            }
+            .cancel-button {
+                background-color: #f39c12;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Thêm giá trị vào danh sách</h2>
+            <input type="text" id="itemInput" placeholder="Nhập giá trị..." />
+            <button onclick="addItem()">Thêm vào danh sách</button>
+            <ul id="itemList"></ul>
+        </div>
+        <script>
+            function addItem() {
+                var input = document.getElementById("itemInput");
+                var inputValue = input.value.trim();
+                if (inputValue) {
+                    var ul = document.getElementById("itemList");
+                    var li = document.createElement("li");
+                    var span = document.createElement("span");
+                    span.textContent = inputValue;
+                    li.appendChild(span);
+
+                    // Xóa
+                    var deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Xóa";
+                    deleteButton.className = "delete-button";
+                    li.appendChild(deleteButton);
+                    deleteButton.onclick = function () {
+                        ul.removeChild(li);
+                    };
+
+                    // Edit
+                    var editButton = document.createElement("button");
+                    editButton.textContent = "Sửa";
+                    editButton.className = "edit-button";
+                    editButton.onclick = function () {
+                        var inputField = document.createElement("input");
+                        inputField.type = "text";
+                        inputField.value = span.textContent;
+                        li.insertBefore(inputField, span);
+                        li.removeChild(span);
+
+                        var saveButton = document.createElement("button");
+                        saveButton.textContent = "Lưu";
+                        saveButton.className = "save-button";
+                        li.insertBefore(saveButton, editButton);
+
+                        saveButton.onclick = function () {
+                            span.textContent = inputField.value;
+                            li.insertBefore(span, inputField);
+                            li.removeChild(inputField);
+                            li.removeChild(cancelButton);
+                            li.insertBefore(editButton, saveButton);
+                            li.removeChild(saveButton);
+                        };
+
+                        var cancelButton = document.createElement("button");
+                        cancelButton.textContent = "Hủy";
+                        cancelButton.className = "cancel-button";
+                        li.insertBefore(cancelButton, editButton);
+                        li.removeChild(editButton);
+                        cancelButton.onclick = function () {
+                            li.insertBefore(span, inputField);
+                            li.removeChild(inputField);
+                            li.removeChild(saveButton);
+                            li.insertBefore(editButton, cancelButton);
+                            li.removeChild(cancelButton);
+                        };
+                    };
+                    li.appendChild(editButton);
+                    ul.appendChild(li);
+                    input.value = "";
+                }
+            }
+        </script>
+    </body>
+</html>

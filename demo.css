@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.form {
+    margin: 10px auto;
+    max-width: fit-content;
+}
+
+.form_group + .form_group {
+    margin-top: 10px;
+}
+
+.form_group:nth-child(2) {
+    position: relative;
+}
+
+.fa-eye-slash,.fa-eye {
+    position: absolute;
+    right: 0;
+    transform: translate(-50%,50%);
+    visibility:hidden;
+}
+
+input {
+    padding: 7px 40px 7px 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #0866ff;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}

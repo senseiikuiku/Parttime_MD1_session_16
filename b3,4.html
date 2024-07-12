@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bài 3,4</title>
+    </head>
+    <body>
+        <div style="font-size: 20px; font-weight: 600; padding: 10px; width: fit-content;" class="text">
+            This text is optional
+        </div>
+        <button style="margin-top: 10px" onclick="text()">
+            Press to say hide text
+        </button>
+        <script>
+            function text() {
+                var text = document.getElementsByClassName("text")[0];
+                text.style.color="red"
+                text.style.background="yellow"
+
+            }
+        </script>
+    </body>
+</html>
